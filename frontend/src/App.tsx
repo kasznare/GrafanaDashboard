@@ -94,7 +94,7 @@ export default function App() {
     {
       id: 2,
       title: 'P95 Latency',
-      description: 'Tail latency line for each workload streamed from the backend gauges.'
+      description: 'Tail latency line for each workload streamed from the .NET service gauges.'
     },
     {
       id: 3,
@@ -126,7 +126,7 @@ export default function App() {
         <section className="hero-card hero-card--loading">
           <p className="eyebrow">Dashboard unavailable</p>
           <h1>Signal Deck could not fetch the mock backend.</h1>
-          <p>{error ?? 'Start the backend or run docker compose up --build.'}</p>
+          <p>{error ?? 'Start the .NET backend or run docker compose up --build.'}</p>
         </section>
       </main>
     );
@@ -153,7 +153,7 @@ export default function App() {
     {
       label: 'Traffic',
       value: `${overview.summary.totalRequestRate} req/s`,
-      hint: 'Synthetic load emitted by the mock backend',
+      hint: 'Synthetic load emitted by the .NET mock service',
       tone: 'neutral'
     },
     {
@@ -267,7 +267,7 @@ export default function App() {
               <p className="eyebrow">Reliability</p>
               <h2>Latency and errors</h2>
             </div>
-            <p>These numbers mirror the same simulated workload that Prometheus scrapes from the backend.</p>
+            <p>These numbers mirror the same simulated workload that Prometheus scrapes from the .NET service.</p>
           </header>
           <div className="chart-card__body">
             <ResponsiveContainer width="100%" height={300}>
@@ -303,7 +303,7 @@ export default function App() {
             <p className="eyebrow">Service Map</p>
             <h2>Current workload posture</h2>
           </div>
-          <p>The mock backend emits per-service health, latency, queue depth, and error budget metrics.</p>
+          <p>The .NET mock service emits per-service health, latency, queue depth, and error budget metrics.</p>
         </header>
         <div className="service-grid">
           {overview.services.map((service) => (
@@ -346,7 +346,7 @@ export default function App() {
             <p>The entire stack is disposable and local, but behaves like a real monitored system.</p>
           </header>
           <ul className="stack-list">
-            <li>Express mock API exposes JSON endpoints and `/metrics` for Prometheus scraping.</li>
+            <li>ASP.NET Core mock API exposes JSON endpoints and `/metrics` for Prometheus scraping.</li>
             <li>Prometheus polls every 5 seconds and stores the synthetic service series.</li>
             <li>Grafana provisions the Prometheus datasource and a dashboard at startup.</li>
             <li>This React UI surfaces both raw mock state and embedded Grafana panels side by side.</li>
